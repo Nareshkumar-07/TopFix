@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopFix - Product Page</title>
+    <style>
+        html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #fff;
+      color: #000;
+      padding: 8px 20px;
+      font-size: 12px;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #000;
+    }
+
+    .main-nav {
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .logo label {
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav-links ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .nav-links ul li {
+      margin: 0 15px;
+    }
+
+    .nav-links ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .nav-links ul li a:hover {
+      color: #f0c14b;
+    }
+
+    .login-button {
+      padding: 10px 25px;
+      border-radius: 20px;
+      background: #f0c14b;
+      border: 1px solid #a88734;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+    }
+
+        
+        .cart-info {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .cart-info::before {
+            content: "\1F6D2";
+            font-size: 1.3rem;
+            margin-right: 6px;
+        }
+        
+        .Shop {
+            background: #fff;
+            padding: 32px 0 16px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-bottom: 18px;
+        }
+        .Shop-content h1 {
+            color: #232f3e;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        .Shop-content p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            padding: 24px 32px 48px 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 18px 16px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s;
+            position: relative;
+            min-height: 420px;
+        }
+        .product-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+        }
+        .product-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            background: #f7f7f7;
+            border-radius: 4px;
+            
+        }
+        .product-title {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 4px;
+            text-align: center;
+            min-height: 48px;
+        }
+        .rating {
+            color: #ffa41c;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .product-price {
+            color: #b12704;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .product-desc {
+            font-size: 0.97rem;
+            color: #444;
+            margin-bottom: 10px;
+            text-align: center;
+            min-height: 38px;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            width: 100%;
+            justify-content: center;
+        }
+        .add-to-cart, .buy-now {
+            border: none;
+            padding: 8px 18px;
+            border-radius: 3px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+        }
+        .add-to-cart {
+            background: #ffd814;
+            color: #111;
+            border: 1px solid #fcd200;
+        }
+        .add-to-cart:hover {
+            background: #f7ca00;
+        }
+        .buy-now {
+            background: #ffa41c;
+            color: #fff;
+            border: 1px solid #ff9900;
+        }
+        .buy-now:hover {
+            background: #cc8500;
+        }
+        .footer {
+            background: #232f3e;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0 12px 0;
+            font-size: 1rem;
+            margin-top: 32px;
+        }
+        @media (max-width: 700px) {
+            .products {
+                grid-template-columns: 1fr;
+                padding: 12px 4vw;
+            }
+            .main-nav, .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                height: auto;
+                padding: 10px 8px;
+            }
+            .main-nav .nav-links ul {
+                margin: 10px 0 0 0;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .navbar .search-bar {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body> 
+
+    <header>
+        <div class="header-title">
+            Laptop, PC & Mobile Online Shop
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="logo">
+            <img src="logo1.webp" alt="Logo">
+            <label>TopFix</label>
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="#laptops">Laptops</a></li>
+                <li><a href="#pcs">PCs</a></li>
+                <li><a href="#mobiles">Mobiles</a></li>
+                <li><a href="#accessories">Accessories</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <a href="login1.html" class="login-button">Login</a>
+    </nav>
+
+    <div class="navbar">
+        <div class="logo"></div>
+        
+        <div class="cart-info" id="cartInfo">
+            Cart: <span id="cartCount">0</span>
+        </div>
+    </div>
+    <div class="Shop">
+        <div class="Shop-content">
+            <h1>Buy the latest Laptops, PCs & Mobiles at the best prices!</h1>
+            <p>Shop top brands, best deals, and fast delivery.</p>
+        </div>
+    </div>
+    <div class="products" id="products">
+    </div>
+    <div class="footer">
+    <p>&copy;  TopFix 2025. All Rights Reserved.</p>
+    </div>
+    <script>
+        const products = [
+            // Laptops
+            {
+                title: "Dell Inspiron 15 5000",
+                img: "laptop1.jpg",
+                price: 52999,
+                desc: "15.6\" FHD, Intel i5 12th Gen, 8GB RAM, 512GB SSD, Win 11.",
+                rating: 4.5,
+                category: "laptops"
+            },
+            {
+                title: "HP Pavilion x360",
+                img: "laptop2.png",
+                price: 59999,
+                desc: "14\" Touch, Intel i5 11th Gen, 16GB RAM, 512GB SSD, Win 11.",
+                rating: 4.3,
+                category: "laptops"
+            },
+            {
+                title: "Lenovo IdeaPad Slim 3",
+                img: "laptop3.jpg",
+                price: 42999,
+                desc: "15.6\" FHD, Ryzen 5, 8GB RAM, 512GB SSD, Win 11.",
+                rating: 4.2,
+                category: "laptops"
+            },
+            {
+                title: "ASUS VivoBook 15",
+                img: "laptop4.png",
+                price: 38999,
+                desc: "15.6\" FHD, Intel i3 12th Gen, 8GB RAM, 256GB SSD.",
+                rating: 4.0,
+                category: "laptops"
+            },
+            {
+                title: "Apple MacBook Air M2",
+                img: "laptop5.jpg",
+                price: 104999,
+                desc: "13.6\" Retina, Apple M2, 8GB RAM, 256GB SSD, macOS.",
+                rating: 4.8,
+                category: "laptops"
+            },
+            {
+                title: "Acer Aspire 7",
+                img: "laptop6.jpg",
+                price: 57999,
+                desc: "15.6\" FHD, Ryzen 7, 16GB RAM, 512GB SSD, GTX 1650.",
+                rating: 4.4,
+                category: "laptops"
+            },
+            {
+                title: "MSI Modern 14",
+                img: "laptop7.jpg",
+                price: 49999,
+                desc: "14\" FHD, Intel i5 11th Gen, 8GB RAM, 512GB SSD.",
+                rating: 4.1,
+                category: "laptops"
+            },
+            {
+                title: "HP Victus Gaming",
+                img: "laptop8.jpg",
+                price: 74999,
+                desc: "16.1\" FHD, Ryzen 5, 16GB RAM, 512GB SSD, RTX 3050.",
+                rating: 4.5,
+                category: "laptops"
+            },
+
+            {
+                title: "Lenovo ThinkCentre M70t",
+                img: "pc1.jpg",
+                price: 45999,
+                desc: "Intel i5 10th Gen, 8GB RAM, 1TB HDD, Win 11 Pro.",
+                rating: 4.2,
+                category: "pcs"
+            },
+            {
+                title: "HP All-in-One 24-df1669",
+                img: "pc2.jpg",
+                price: 52999,
+                desc: "23.8\" FHD, Intel i3 11th Gen, 8GB RAM, 512GB SSD.",
+                rating: 4.0,
+                category: "pcs"
+            },
+            {
+                title: "Assembled Gaming PC",
+                img: "pc3.jpg",
+                price: 69999,
+                desc: "Ryzen 5 5600G, 16GB RAM, 512GB SSD, GTX 1660 Super.",
+                rating: 4.3,
+                category: "pcs"
+            },
+            {
+                title: "Dell OptiPlex 3080",
+                img: "pc4.jpg",
+                price: 38999,
+                desc: "Intel i3 10th Gen, 4GB RAM, 1TB HDD, Win 10 Pro.",
+                rating: 3.9,
+                category: "pcs"
+            },
+            {
+                title: "Apple iMac 24-inch M1",
+                img: "pc5.jpg",
+                price: 124999,
+                desc: "24\" 4.5K Retina, Apple M1, 8GB RAM, 256GB SSD.",
+                rating: 4.7,
+                category: "pcs"
+            },
+            {
+                title: "Acer Aspire C24 All-in-One",
+                img: "pc6.png",
+                price: 59999,
+                desc: "23.8\" FHD, Intel i5 12th Gen, 8GB RAM, 512GB SSD.",
+                rating: 4.1,
+                category: "pcs"
+            },
+            {
+                title: "Zebronics ZEB-AIO5221",
+                img: "pc7.jpg",
+                price: 29999,
+                desc: "21.5\" FHD, Intel J4105, 4GB RAM, 120GB SSD.",
+                rating: 3.8,
+                category: "pcs"
+            },
+            {
+                title: "HP Pavilion Gaming Desktop",
+                img: "pc8.jpg",
+                price: 84999,
+                desc: "Intel i7 12th Gen, 16GB RAM, 1TB SSD, RTX 3060.",
+                rating: 4.6,
+                category: "pcs"
+            },
+
+            {
+                title: "Apple iPhone 14",
+                img: "mobile1.jpg",
+                price: 71999,
+                desc: "6.1\" Super Retina XDR, A15 Bionic, 128GB, 12MP Dual Cam.",
+                rating: 4.7,
+                category: "mobiles"
+            },
+            {
+                title: "Samsung Galaxy S23",
+                img: "mobile2.jpg",
+                price: 74999,
+                desc: "6.1\" FHD+, Snapdragon 8 Gen 2, 8GB RAM, 128GB.",
+                rating: 4.6,
+                category: "mobiles"
+            },
+            {
+                title: "OnePlus 11R 5G",
+                img: "mobile3.jpg",
+                price: 39999,
+                desc: "6.74\" AMOLED, Snapdragon 8+ Gen 1, 8GB RAM, 128GB.",
+                rating: 4.4,
+                category: "mobiles"
+            },
+            {
+                title: "Xiaomi Redmi Note 12 Pro",
+                img: "mobile4..jpg",
+                price: 23999,
+                desc: "6.67\" AMOLED, Dimensity 1080, 8GB RAM, 256GB.",
+                rating: 4.3,
+                category: "mobiles"
+            },
+            {
+                title: "Realme Narzo 60X",
+                img: "mobile5.jpg",
+                price: 13999,
+                desc: "6.72\" FHD+, Dimensity 6100+, 6GB RAM, 128GB.",
+                rating: 4.1,
+                category: "mobiles"
+            },
+            {
+                title: "Google Pixel 7a",
+                img: "mobile6.jpg",
+                price: 42999,
+                desc: "6.1\" OLED, Google Tensor G2, 8GB RAM, 128GB.",
+                rating: 4.5,
+                category: "mobiles"
+            },
+            {
+                title: "Vivo V27 Pro",
+                img: "mobile7.jpg",
+                price: 36999,
+                desc: "6.78\" AMOLED, Dimensity 8200, 8GB RAM, 128GB.",
+                rating: 4.2,
+                category: "mobiles"
+            },
+            {
+                title: "Motorola Edge 40",
+                img: "mobile8.jpg",
+                price: 29999,
+                desc: "6.55\" pOLED, Dimensity 8020, 8GB RAM, 256GB.",
+                rating: 4.3,
+                category: "mobiles"
+            },
+
+            // Accessories
+            {
+                title: "Logitech MX Master 3S Mouse",
+                img: "extra1.jpg",
+                price: 7999,
+                desc: "Wireless, Ergonomic, 8K DPI, USB-C Rechargeable.",
+                rating: 4.8,
+                category: "accessories"
+            },
+            {
+                title: "HP K500F Wired Keyboard",
+                img: "extra2.jpg",
+                price: 799,
+                desc: "Full-size, LED Backlit, USB, Spill Resistant.",
+                rating: 4.2,
+                category: "accessories"
+            },
+            {
+                title: "Canon PIXMA MG2577s Printer",
+                img: "extra3.jpg",
+                price: 3999,
+                desc: "All-in-One Inkjet, Print/Scan/Copy, USB.",
+                rating: 4.2,
+                category: "accessories"
+            },
+            {
+                title: "SanDisk Ultra 128GB MicroSD",
+                img: "extra4.jpg",
+                price: 1199,
+                desc: "A1, UHS-I, up to 120MB/s, for mobiles/cameras.",
+                rating: 4.6,
+                category: "accessories"
+            },
+            {
+                title: "boAt Rockerz 450 Bluetooth Headphones",
+                img: "extra5.jpg",
+                price: 1499,
+                desc: "Wireless, 15H Playback, Lightweight, Mic.",
+                rating: 4.3,
+                category: "accessories"
+            },
+            {
+                title: "Samsung 25W USB-C Fast Charger",
+                img: "extra6.jpg",
+                price: 1299,
+                desc: "Super Fast Charging, USB Type-C, for mobiles.",
+                rating: 4.5,
+                category: "accessories"
+            },
+            {
+                title: "TP-Link Archer C6 WiFi Router",
+                img: "extra7.jpg",
+                price: 2499,
+                desc: "1200Mbps, Dual Band, 5 Antennas, MU-MIMO.",
+                rating: 4.4,
+                category: "accessories"
+            },
+            {
+                title: "WD Elements 1TB Portable HDD",
+                img: "extra8.jpg",
+                price: 3899,
+                desc: "USB 3.0, Plug & Play, Compact Design.",
+                rating: 4.6,
+                category: "accessories"
+            },
+
+            // More Laptops
+            {
+                title: "Dell XPS 13 Plus",
+                img: "laptop9.jpg",
+                price: 129999,
+                desc: "13.4\" OLED, Intel i7 12th Gen, 16GB RAM, 1TB SSD.",
+                rating: 4.7,
+                category: "laptops"
+            },
+            {
+                title: "Microsoft Surface Laptop 5",
+                img: "laptop10.jpg",
+                price: 114999,
+                desc: "13.5\" Touch, Intel i5 12th Gen, 8GB RAM, 512GB SSD.",
+                rating: 4.5,
+                category: "laptops"
+            },
+
+            // More PCs
+            {
+                title: "Asus ROG Strix G15 Gaming PC",
+                img: "pc9.jpg",
+                price: 99999,
+                desc: "Ryzen 7 5800X, 16GB RAM, 1TB SSD, RTX 3070.",
+                rating: 4.8,
+                category: "pcs"
+            },
+            {
+                title: "Intel NUC 11 Mini PC",
+                img: "pc10.jpg",
+                price: 34999,
+                desc: "Intel i5 11th Gen, 8GB RAM, 256GB SSD, Tiny Form.",
+                rating: 4.2,
+                category: "pcs"
+            },
+
+            // More Mobiles
+            {
+                title: "Oppo Reno 10 Pro+",
+                img: "mobile9.jpg",
+                price: 49999,
+                desc: "6.74\" AMOLED, Snapdragon 8+ Gen 1, 12GB RAM, 256GB.",
+                rating: 4.4,
+                category: "mobiles"
+            },
+            {
+                title: "Nothing Phone (2)",
+                img: "mobile10.jpg",
+                price: 44999,
+                desc: "6.7\" OLED, Snapdragon 8+ Gen 1, 12GB RAM, 256GB.",
+                rating: 4.3,
+                category: "mobiles"
+            },
+
+            // More Accessories
+            {
+                title: "Apple AirPods Pro (2nd Gen)",
+                img: "extra9.jpg",
+                price: 24999,
+                desc: "Active Noise Cancellation, MagSafe, Wireless Charging.",
+                rating: 4.7,
+                category: "accessories"
+            },
+            {
+                title: "Mi Power Bank 3i 20000mAh",
+                img: "extra10.jpg",
+                price: 1999,
+                desc: "18W Fast Charging, Triple Output, Dual Input.",
+                rating: 4.5,
+                category: "accessories"
+            },
+        ];
+
+        let cart = [];
+
+        function renderProducts(filter = "", category = "") {
+            const productsDiv = document.getElementById('products');
+            productsDiv.innerHTML = "";
+            let filtered = products.filter(p =>
+                (category ? p.category === category : true) &&
+                (
+                    p.title.toLowerCase().includes(filter.toLowerCase()) ||
+                    p.desc.toLowerCase().includes(filter.toLowerCase())
+                )
+            );
+            if (filtered.length === 0) {
+                productsDiv.innerHTML = "<p style='color:#232f3e;text-align:center;'>No products found.</p>";
+                return;
+            }
+            filtered.forEach((p, idx) => {
+                productsDiv.innerHTML += `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.title}">
+                    <div class="product-title">${p.title}</div>
+                    <div class="rating">${renderStars(p.rating)} (${p.rating})</div>
+                    <div class="product-price">₹${p.price.toLocaleString()}</div>
+                    <div class="product-desc">${p.desc}</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" onclick="addToCart(${products.indexOf(p)})">Add to Cart</button>
+                        <button class="buy-now" onclick="buyNow(${products.indexOf(p)})">Buy Now</button>
+                    </div>
+                </div>
+                `;
+            });
+        }
+
+        function renderStars(rating) {
+            let full = Math.floor(rating);
+            let half = rating % 1 >= 0.5 ? 1 : 0;
+            let stars = "";
+            for (let i = 0; i < full; i++) stars += "&#9733;";
+            if (half) stars += "&#189;";
+            for (let i = full + half; i < 5; i++) stars += "&#9734;";
+            return stars;
+        }
+
+        function addToCart(idx) {
+            cart.push(products[idx]);
+            document.getElementById('cartCount').textContent = cart.length;
+            showCart();
+        }
+
+        function buyNow(idx) {
+            alert("Proceeding to buy: " + products[idx].title + "\n(Checkout functionality not implemented in this demo.)");
+        }
+
+        function searchProducts() {
+            const val = document.getElementById('searchInput').value;
+            renderProducts(val);
+        }
+        function showCart() {
+            let cartDiv = document.getElementById('cartModal');
+            if (!cartDiv) {
+                cartDiv = document.createElement('div');
+                cartDiv.id = 'cartModal';
+                cartDiv.style.position = 'fixed';
+                cartDiv.style.top = '70px';
+                cartDiv.style.right = '30px';
+                cartDiv.style.background = '#fff';
+                cartDiv.style.border = '1px solid #232f3e';
+                cartDiv.style.boxShadow = '0 2px 12px rgba(0,0,0,0.18)';
+                cartDiv.style.zIndex = '9999';
+                cartDiv.style.padding = '18px 22px 12px 22px';
+                cartDiv.style.borderRadius = '8px';
+                cartDiv.style.minWidth = '260px';
+                cartDiv.style.maxWidth = '340px';
+                cartDiv.style.maxHeight = '350px';
+                cartDiv.style.overflowY = 'auto';
+                cartDiv.innerHTML = '';
+                document.body.appendChild(cartDiv);
+            }
+            let html = `<div style="font-weight:bold;font-size:1.1rem;color:#232f3e;margin-bottom:8px;">Cart Items (${cart.length})</div>`;
+            if (cart.length === 0) {
+                html += `<div style="color:#888;">Cart is empty.</div>`;
+            } else {
+                html += `<ul style="padding-left:18px;margin:0 0 10px 0;">`;
+                cart.forEach((item, i) => {
+                    html += `<li style="margin-bottom:6px;">
+                        <span style="font-weight:500;">${item.title}</span>
+                        <span style="color:#b12704;font-weight:bold;"> - ₹${item.price.toLocaleString()}</span>
+                    </li>`;
+                });
+                html += `</ul>`;
+            }
+            html += `<button onclick="closeCart()" style="background:#232f3e;color:#fff;border:none;padding:6px 16px;border-radius:3px;cursor:pointer;">Close</button>`;
+            cartDiv.innerHTML = html;
+            cartDiv.style.display = 'block';
+        }
+
+        function closeCart() {
+            let cartDiv = document.getElementById('cartModal');
+            if (cartDiv) cartDiv.style.display = 'none';
+        }
+
+        // Add event listeners for nav links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('cartInfo').style.cursor = 'pointer';
+            document.getElementById('cartInfo').onclick = showCart;
+            renderProducts();
+
+            // Add click handlers for category links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === "#laptops") {
+                        e.preventDefault();
+                        renderProducts("", "laptops");
+                    } else if (href === "#pcs") {
+                        e.preventDefault();
+                        renderProducts("", "pcs");
+                    } else if (href === "#mobiles") {
+                        e.preventDefault();
+                        renderProducts("", "mobiles");
+                    } else if (href === "#accessories") {
+                        e.preventDefault();
+                        renderProducts("", "accessories");
+                    }
+                    // let other links (like Home, Contact) work as normal
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
